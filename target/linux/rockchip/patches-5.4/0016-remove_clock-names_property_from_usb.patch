@@ -1,0 +1,82 @@
+From 6a92e52bae81473f8ac9a06556153176e70114a9 Mon Sep 17 00:00:00 2001
+From: Johan Jonker <jbx6244@gmail.com>
+Date: Thu, 12 Mar 2020 18:14:40 +0100
+Subject: arm64: dts: rockchip: remove clock-names property from 'generic-ehci'
+ nodes
+
+A test with the command below gives for example this error:
+
+arch/arm64/boot/dts/rockchip/rk3328-evb.dt.yaml: usb@ff5c0000:
+'clock-names' does not match any of the regexes: 'pinctrl-[0-9]+'
+
+'clock-names' is not a valid property name for usb_host nodes with
+compatible string 'generic-ehci', so remove them.
+
+make ARCH=arm64 dtbs_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/usb/generic-ehci.yaml
+
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+Link: https://lore.kernel.org/r/20200312171441.21144-3-jbx6244@gmail.com
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+---
+ arch/arm64/boot/dts/rockchip/rk3328.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
+
+(limited to 'arch/arm64/boot/dts/rockchip/rk3328.dtsi')
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+index 7abbc8dc1bc2..39a8b19f401d 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+@@ -969,7 +969,6 @@
+ 		reg = <0x0 0xff5c0000 0x0 0x10000>;
+ 		interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
+ 		clocks = <&cru HCLK_HOST0>, <&u2phy>;
+-		clock-names = "usbhost", "utmi";
+ 		phys = <&u2phy_host>;
+ 		phy-names = "usb";
+ 		status = "disabled";
+-- 
+cgit 1.2-0.3.lf.el7
+
+From 77460b3d7d794fd30c010958c2346cc9ac5aadd4 Mon Sep 17 00:00:00 2001
+From: Johan Jonker <jbx6244@gmail.com>
+Date: Thu, 12 Mar 2020 18:14:41 +0100
+Subject: arm64: dts: rockchip: remove clock-names property from 'generic-ohci'
+ nodes
+
+A test with the command below gives for example this error:
+
+arch/arm64/boot/dts/rockchip/rk3328-evb.dt.yaml: usb@ff5d0000:
+'clock-names' does not match any of the regexes: 'pinctrl-[0-9]+'
+
+'clock-names' is not a valid property name for usb_host nodes with
+compatible string 'generic-ohci', so remove them.
+
+make ARCH=arm64 dtbs_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/usb/generic-ohci.yaml
+
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+Link: https://lore.kernel.org/r/20200312171441.21144-4-jbx6244@gmail.com
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+---
+ arch/arm64/boot/dts/rockchip/rk3328.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
+
+(limited to 'arch/arm64/boot/dts/rockchip/rk3328.dtsi')
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+index 39a8b19f401d..7e88d88aab98 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+@@ -979,7 +979,6 @@
+ 		reg = <0x0 0xff5d0000 0x0 0x10000>;
+ 		interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
+ 		clocks = <&cru HCLK_HOST0>, <&u2phy>;
+-		clock-names = "usbhost", "utmi";
+ 		phys = <&u2phy_host>;
+ 		phy-names = "usb";
+ 		status = "disabled";
+-- 
+cgit 1.2-0.3.lf.el7
+
