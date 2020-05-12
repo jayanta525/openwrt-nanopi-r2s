@@ -1,0 +1,50 @@
+From: Robin Murphy <robin.murphy@arm.com>
+To: lgirdwood@gmail.com,
+	broonie@kernel.org,
+	heiko@sntech.de
+Subject: [PATCH v2 1/3] ASoC: dt-bindings: Make RK3328 codec GPIO explicit
+Date: Tue, 18 Feb 2020 21:31:58 +0000
+
+Existing RK3328 codec drivers have overloaded the GRF phandle to assume
+implicit control of the limited-function GPIO_MUTE pin, which is usually
+used to enable an external audio line driver IC. Since this pin has a
+proper binding of its own (see gpio/rockchip,rk3328-grf-gpio.txt), make
+a GPIO explicit in the codec binding too. This will help avoid ambiguity
+on boards that use that pin for some other purpose.
+
+(and while touching the example, enforce the "don't include status" rule)
+
+Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+
+v2: no change
+
+ .../devicetree/bindings/sound/rockchip,rk3328-codec.txt    | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/sound/rockchip,rk3328-codec.txt b/Documentation/devicetree/bindings/sound/rockchip,rk3328-codec.txt
+index 2469588c7ccb..1ecd75d2032a 100644
+--- a/Documentation/devicetree/bindings/sound/rockchip,rk3328-codec.txt
++++ b/Documentation/devicetree/bindings/sound/rockchip,rk3328-codec.txt
+@@ -10,6 +10,11 @@ Required properties:
+ - clock-names: should be "pclk".
+ - spk-depop-time-ms: speak depop time msec.
+ 
++Optional properties:
++
++- mute-gpios: GPIO specifier for external line driver control (typically the
++              dedicated GPIO_MUTE pin)
++
+ Example for rk3328 internal codec:
+ 
+ codec: codec@ff410000 {
+@@ -18,6 +23,6 @@ codec: codec@ff410000 {
+ 	rockchip,grf = <&grf>;
+ 	clocks = <&cru PCLK_ACODEC>;
+ 	clock-names = "pclk";
++	mute-gpios = <&grf_gpio 0 GPIO_ACTIVE_LOW>;
+ 	spk-depop-time-ms = 100;
+-	status = "disabled";
+ };
+ 
