@@ -21,6 +21,14 @@ define U-Boot/Default
   HIDDEN:=1
 endef
 
+define U-Boot/nanopi-r2-rk3328
+  BUILD_SUBTARGET:=armv8
+  NAME:=NanoPi R2S
+  BUILD_DEVICES:= \
+    friendlyelec_nanopi-r2-rev00
+  BL31=$(STAGING_DIR_IMAGE)/rk3328_bl31.elf
+endef
+
 define U-Boot/rockpro64-rk3399
   BUILD_SUBTARGET:=armv8
   NAME:=RockPro64
@@ -38,6 +46,7 @@ define U-Boot/rock64-rk3328
 endef
 
 UBOOT_TARGETS := \
+  nanopi-r2-rk3328 \
   rockpro64-rk3399 \
   rock64-rk3328
 
