@@ -1,0 +1,51 @@
+# specific path build
+trigger:
+  batch: true
+  branches:
+    include:
+    - master
+  paths:
+    exclude:
+    - '*.md'
+    - '.github/*'
+
+jobs:
+- job: openwrt_rk3328_nanopi_r2s
+  pool:
+    vmImage: ubuntu-latest
+
+  steps:
+    - bash: |
+        sudo apt -y update
+        sudo apt -y install build-essential git unzip ncurses-dev libz-dev libssl-dev python subversion gettext gawk wget curl rsync perl swig python-dev
+        sudo timedatectl set-timezone "Asia/Kolkata"
+      displayName: 'Install dependencies'
+    - bash: |
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
+        make defconfig
+      displayName: 'Update feeds'
+    - bash: |
+        echo "CPU Cores: "$(nproc)
+        make -j3 toolchain/compile || make -j1 toolchain/compile || make -j1 toolchain/compile V=sc
+      displayName: 'Build toolchains'
+    - bash: |
+        echo "CPU Cores: "$(nproc)
+        make -j3 target/linux/compile || make -j1 target/linux/compile || make -j1 target/linux/compile V=sc
+      displayName: 'Build kernel'
+    - bash: |
+        echo "CPU Cores: "$(nproc)
+        make -j3 || make -j1 || make -j1 V=sc
+      displayName: 'Build openwrt'
+    - bash: |
+        cp -rf ./bin/targets/ $(Build.ArtifactStagingDirectory)/
+      displayName: 'Copy files to artifacts directory'
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: openwrt
+        publishLocation: Container
+      condition: succeededOrFailed()
+      displayName: 'Publish artifacts'
+
+  timeoutInMinutes: 300
