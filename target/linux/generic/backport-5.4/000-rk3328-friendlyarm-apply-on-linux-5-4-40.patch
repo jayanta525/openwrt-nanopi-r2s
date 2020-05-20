@@ -484,7 +484,7 @@ diff -ruN linux-5.4.40/arch/arm64/boot/dts/rockchip/rk3328-dram-default-timing.d
 diff -ruN linux-5.4.40/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2-common.dtsi kernel-rockchip/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2-common.dtsi
 --- linux-5.4.40/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2-common.dtsi	1970-01-01 00:00:00.000000000 +0000
 +++ kernel-rockchip/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2-common.dtsi	2020-05-17 20:28:33.715110012 +0000
-@@ -0,0 +1,624 @@
+@@ -0,0 +1,636 @@
 +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 +/*
 + * Copyright (c) 2018 FriendlyElec Computer Tech. Co., Ltd.
@@ -696,6 +696,18 @@ diff -ruN linux-5.4.40/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2-common.dtsi
 +};
 +
 +&cpu0 {
++	cpu-supply = <&vdd_arm>;
++};
++
++&cpu1 {
++	cpu-supply = <&vdd_arm>;
++};
++
++&cpu2 {
++	cpu-supply = <&vdd_arm>;
++};
++
++&cpu3 {
 +	cpu-supply = <&vdd_arm>;
 +};
 +
@@ -1112,7 +1124,7 @@ diff -ruN linux-5.4.40/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2-common.dtsi
 diff -ruN linux-5.4.40/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2-rev00.dts kernel-rockchip/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2-rev00.dts
 --- linux-5.4.40/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2-rev00.dts	1970-01-01 00:00:00.000000000 +0000
 +++ kernel-rockchip/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2-rev00.dts	2020-05-17 20:28:33.715110012 +0000
-@@ -0,0 +1,145 @@
+@@ -0,0 +1,147 @@
 +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 +/*
 + * Copyright (c) 2019 FriendlyElec Computer Tech. Co., Ltd.
@@ -1216,6 +1228,8 @@ diff -ruN linux-5.4.40/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2-rev00.dts k
 +&sdmmc {
 +	vqmmc-supply = <&vcc_sd>;
 +	max-frequency = <150000000>;
++	sd-uhs-sdr12;
++	sd-uhs-sdr25;
 +	sd-uhs-sdr50;
 +	sd-uhs-sdr104;
 +	status = "okay";
