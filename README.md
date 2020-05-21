@@ -63,15 +63,24 @@ CPU revision    : 4
 ```
 
 ### openssl speed -evp aes-128-cbc -elapsed
-
-    OpenSSL 1.1.1g  21 Apr 2020
-    built on: Sun May 17 17:32:21 2020 UTC
-    options:bn(64,64) rc4(char) des(int) aes(partial) blowfish(ptr)
-    compiler: aarch64-openwrt-linux-musl-gcc -fPIC -pthread -Wa,--noexecstack -Wall -O3 -Wno-error=unused-but-set-variable -Wno-error=unused-result -O3 -ffunction-sections -fdata-sections -znow -zrelro -DOPENSSL_USE_NODELETE -DOPENSSL_PIC -DOPENSSL_CPUID_OBJ -DOPENSSL_BN_ASM_MONT -DSHA1_ASM -DSHA256_ASM -DSHA512_ASM -DKECCAK1600_ASM -DVPAES_ASM -DECP_NISTZ256_ASM -DPOLY1305_ASM -DNDEBUG -DOPENSSL_SMALL_FOOTPRINT
-    The 'numbers' are in 1000s of bytes per second processed.
-    type             16 bytes     64 bytes    256 bytes   1024 bytes   8192 bytes  16384 bytes
-    aes-128-cbc     106865.63k   325850.30k   635993.51k   866571.95k   968966.14k   975978.50k
-
+```
+OpenSSL 1.1.1g  21 Apr 2020
+built on: Wed May 20 21:35:46 2020 U,64) rc4(char) des(int) aes(partial) idea(int) blowfish(ptr) 
+compiler: aarch64-openwrt-linux-musl-gcc -fPIC -pthread -Wa,--noexecstack -Wall -O3 -Wno-error=unused-but-set-variable -Wno-error=unused-result -O3 -ffunction-sections -fdata-sections -znow -zrelro -DOPENSSL_USE_NODELETE -DOPENSSL_PIC -DOPENSSL_CPUID_OBJ -DOPENSSL_BN_ASM_MONT -DSHA1_ASM -DSHA256_ASM -DSHA512_ASM -DKECCAK1600_ASM -DVPAES_ASM -DECP_NISTZ256_ASM -DPOLY1305_ASM -DZLIB -DZLIB_SHARED -DNDEBUG -DOPENSSL_PREFER_CHACHA_OVER_GCM
+The 'numbers' are in 1000s of bytes per second processed.
+type             16 bytes     64 bytes    256 bytes   1024 bytes   8192 bytes  16384 bytes
+aes-128-cbc     125389.79k   380230.29k   742168.83k  1011209.90k  1130659.84k  1138862.76k
+```
+### openssl speed aes-128-cbc
+```
+OpenSSL 1.1.1g  21 Apr 2020
+built on: Wed May 20 21:35:46 2020 UTC
+options:bn(64,64) rc4(char) des(int) aes(partial) idea(int) blowfish(ptr) 
+compiler: aarch64-openwrt-linux-musl-gcc -fPIC -pthread -Wa,--noexecstack -Wall -O3 -Wno-error=unused-but-set-variable -Wno-error=unused-result -O3 -ffunction-sections -fdata-sections -znow -zrelro -DOPENSSL_USE_NODELETE -DOPENSSL_PIC -DOPENSSL_CPUID_OBJ -DOPENSSL_BN_ASM_MONT -DSHA1_ASM -DSHA256_ASM -DSHA512_ASM -DKECCAK1600_ASM -DVPAES_ASM -DECP_NISTZ256_ASM -DPOLY1305_ASM -DZLIB -DZLIB_SHARED -DNDEBUG -DOPENSSL_PREFER_CHACHA_OVER_GCM
+The 'numbers' are in 1000s of bytes per second processed.
+type             16 bytes     64 bytes    256 bytes   1024 bytes   8192 bytes  16384 bytes
+aes-128 cbc      55115.86k    60549.91k    62123.52k    62787.30k    62698.84k    62701.57k
+```
 ### Luci
 
 ![enter image description here](https://github.com/jayanta525/openwrt-nanopi-r2s/raw/rk3328-uboot-spl/.assets/luci-overview.png)
