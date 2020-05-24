@@ -1226,7 +1226,7 @@ diff -ruN linux-5.4.40/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2-rev00.dts k
 +};
 +
 +&sdmmc {
-+	vqmmc-supply = <&vcc_sd>;
++	vqmmc-supply = <&vccio_sd>;
 +	max-frequency = <150000000>;
 +	sd-uhs-sdr12;
 +	sd-uhs-sdr25;
