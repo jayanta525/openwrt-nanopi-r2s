@@ -484,7 +484,7 @@ diff -ruN linux-5.4.40/arch/arm64/boot/dts/rockchip/rk3328-dram-default-timing.d
 diff -ruN linux-5.4.40/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2-common.dtsi kernel-rockchip/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2-common.dtsi
 --- linux-5.4.40/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2-common.dtsi	1970-01-01 00:00:00.000000000 +0000
 +++ kernel-rockchip/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2-common.dtsi	2020-05-17 20:28:33.715110012 +0000
-@@ -0,0 +1,636 @@
+@@ -0,0 +1,637 @@
 +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 +/*
 + * Copyright (c) 2018 FriendlyElec Computer Tech. Co., Ltd.
@@ -574,6 +574,7 @@ diff -ruN linux-5.4.40/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2-common.dtsi
 +		gpio = <&gpio0 30 GPIO_ACTIVE_LOW>;
 +		pinctrl-names = "default";
 +		pinctrl-0 = <&sdmmc0m1_gpio>;
++  regulator-boot-on;
 +		regulator-name = "vcc_sd";
 +		regulator-min-microvolt = <3300000>;
 +		regulator-max-microvolt = <3300000>;
