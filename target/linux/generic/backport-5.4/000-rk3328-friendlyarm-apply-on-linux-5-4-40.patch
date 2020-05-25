@@ -574,7 +574,7 @@ diff -ruN linux-5.4.40/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2-common.dtsi
 +		gpio = <&gpio0 30 GPIO_ACTIVE_LOW>;
 +		pinctrl-names = "default";
 +		pinctrl-0 = <&sdmmc0m1_gpio>;
-+  regulator-boot-on;
++		regulator-boot-on;
 +		regulator-name = "vcc_sd";
 +		regulator-min-microvolt = <3300000>;
 +		regulator-max-microvolt = <3300000>;
@@ -9518,4 +9518,3 @@ diff -ruN linux-5.4.40/include/soc/rockchip/rockchip_sip.h kernel-rockchip/inclu
 +} share_page_type_t;
  
  #endif
- 
