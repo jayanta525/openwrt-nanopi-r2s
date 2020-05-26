@@ -11,7 +11,7 @@ define Device/friendlyelec_nanopi-r2-rev00
   SOC := rk3328
   UBOOT_DEVICE_NAME := nanopi-r2-rk3328
   IMAGE/sysupgrade.img.gz := boot-common | boot-script | pine64-img | gzip | append-metadata
-  DEVICE_PACKAGES := kmod-usb-net kmod-usb-net-rtl8152
+  DEVICE_PACKAGES := kmod-usb-net kmod-usb-net-rtl8152 kmod-phy-realtek
 endef
 TARGET_DEVICES += friendlyelec_nanopi-r2-rev00
 
