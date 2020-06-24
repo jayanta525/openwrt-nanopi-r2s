@@ -1,0 +1,16 @@
+version: 2.1
+jobs:
+  check_circle_ci_branch:
+    docker: 
+      - image: circleci/node:4.8.2 # the primary container, where your job's commands are run
+    steps:
+      - run: echo "Check CircleCI branch" # run the `echo` command
+workflows:
+  version: 2
+  main:
+    jobs:
+      - check_circle_ci_branch:
+          filters:
+            branches:
+              only: 
+                - rk3328
