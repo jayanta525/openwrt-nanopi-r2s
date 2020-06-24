@@ -1,0 +1,1 @@
+NanoPi R2S
